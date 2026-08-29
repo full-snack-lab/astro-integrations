@@ -1,0 +1,41 @@
+{
+  "name": "astro-integrations",
+  "private": true,
+  "homepage": "https://github.com/full-snack-lab/astro-integrations#readme",
+  "bugs": {
+    "url": "https://github.com/full-snack-lab/astro-integrations/issues"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/full-snack-lab/astro-integrations.git"
+  },
+  "workspaces": [
+    "packages/*"
+  ],
+  "type": "module",
+  "scripts": {
+    "build": "bunup",
+    "dev": "bunup --watch",
+    "format": "oxfmt",
+    "lint": "oxlint",
+    "prepare": "bun simple-git-hooks",
+    "release": "bumpp -r --commit --push --tag",
+    "test": "bun test",
+    "test:coverage": "bun test --coverage",
+    "test:watch": "bun test --watch",
+    "type-check": "bun run --filter '*' type-check"
+  },
+  "devDependencies": {
+    "@types/bun": "^1.4.0",
+    "bumpp": "^12.2.2",
+    "bunup": "^0.16.32",
+    "oxfmt": "^0.65.0",
+    "oxlint": "^1.80.0",
+    "simple-git-hooks": "^2.13.1",
+    "typescript": "^6.0.3"
+  },
+  "simple-git-hooks": {
+    "pre-commit": "bun run lint && bun run type-check"
+  }
+}

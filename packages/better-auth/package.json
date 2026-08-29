@@ -1,0 +1,51 @@
+{
+  "name": "@fullsnacklab/astro-better-auth",
+  "version": "0.1.0",
+  "description": "Astro integration for Better Auth with automatic route and optional session middleware setup.",
+  "keywords": [
+    "astro",
+    "astro-integration",
+    "authentication",
+    "better-auth"
+  ],
+  "homepage": "https://github.com/full-snack-lab/astro-integrations/tree/main/packages/better-auth#readme",
+  "bugs": {
+    "url": "https://github.com/full-snack-lab/astro-integrations/issues"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/full-snack-lab/astro-integrations.git",
+    "directory": "packages/better-auth"
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "type": "module",
+  "sideEffects": false,
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "publishConfig": {
+    "access": "public",
+    "provenance": true
+  },
+  "scripts": {
+    "build": "cd ../.. && bunup --filter astro-better-auth",
+    "test": "bun test",
+    "type-check": "tsc --noEmit -p tsconfig.json && tsc --noEmit -p tsconfig.test.json",
+    "prepack": "bun run build"
+  },
+  "peerDependencies": {
+    "astro": "^7.2.9",
+    "better-auth": "^1.7.2"
+  }
+}

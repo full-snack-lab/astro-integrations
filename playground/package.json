@@ -1,0 +1,23 @@
+{
+  "name": "tremendous-transit",
+  "version": "0.0.1",
+  "type": "module",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@astrojs/node": "^11.1.4",
+    "@fullsnacklab/astro-better-auth": "../packages/better-auth",
+    "astro": "^7.2.9",
+    "better-auth": "^1.7.2"
+  },
+  "engines": {
+    "node": ">=22.12.0"
+  },
+  "allowScripts": {
+    "esbuild": true
+  }
+}

@@ -1,0 +1,11 @@
+node_modules/
+dist/
+.astro/
+.env
+.npmrc
+.envrc
+.DS_Store
+.mcp.json
+.pi/
+.octocode/
+.octocode-lite/
