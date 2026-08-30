@@ -1,0 +1,66 @@
+{
+  "name": "@fullsnacklab/astro-theme",
+  "version": "0.1.0",
+  "description": "Validated YAML site identity, metadata, SEO, and provider-neutral runtime theme loading for Astro.",
+  "keywords": [
+    "astro",
+    "astro-integration",
+    "metadata",
+    "seo",
+    "theme",
+    "yaml"
+  ],
+  "homepage": "https://github.com/full-snack-lab/astro-integrations/tree/main/packages/theme#readme",
+  "bugs": {
+    "url": "https://github.com/full-snack-lab/astro-integrations/issues"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/full-snack-lab/astro-integrations.git",
+    "directory": "packages/theme"
+  },
+  "files": [
+    "dist",
+    "schema.json",
+    "README.md",
+    "LICENSE"
+  ],
+  "type": "module",
+  "sideEffects": false,
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./runtime": {
+      "types": "./dist/runtime.d.ts",
+      "import": "./dist/runtime.js"
+    },
+    "./schema": {
+      "types": "./dist/schema.d.ts",
+      "import": "./dist/schema.js"
+    },
+    "./schema.json": "./schema.json",
+    "./package.json": "./package.json"
+  },
+  "publishConfig": {
+    "access": "public",
+    "provenance": true
+  },
+  "scripts": {
+    "build": "cd ../.. && bunup --filter astro-theme",
+    "test": "bun test",
+    "type-check": "tsc --noEmit -p tsconfig.json && tsc --noEmit -p tsconfig.test.json",
+    "prepack": "bun run build"
+  },
+  "dependencies": {
+    "yaml": "^2.8.1",
+    "zod": "^4.5.4"
+  },
+  "peerDependencies": {
+    "astro": "^7.2.9"
+  }
+}

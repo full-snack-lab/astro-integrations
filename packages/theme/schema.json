@@ -1,0 +1,577 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://fullsnacklab.dev/schemas/astro-theme/v1.json",
+  "title": "Full Snack Lab Astro theme configuration",
+  "description": "Validated site identity, i18n, SEO, Open Graph, metadata, assets, and structured-data settings.",
+  "type": "object",
+  "properties": {
+    "schemaVersion": {
+      "type": "number",
+      "const": 1
+    },
+    "site": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "anyOf": [
+            {
+              "type": "string",
+              "minLength": 1
+            },
+            {
+              "type": "object",
+              "propertyNames": {
+                "type": "string",
+                "pattern": "^[A-Za-z0-9]+(?:-[A-Za-z0-9]+)*$"
+              },
+              "additionalProperties": {
+                "type": "string",
+                "minLength": 1
+              }
+            }
+          ]
+        },
+        "shortName": {
+          "anyOf": [
+            {
+              "type": "string",
+              "minLength": 1
+            },
+            {
+              "type": "object",
+              "propertyNames": {
+                "type": "string",
+                "pattern": "^[A-Za-z0-9]+(?:-[A-Za-z0-9]+)*$"
+              },
+              "additionalProperties": {
+                "type": "string",
+                "minLength": 1
+              }
+            }
+          ]
+        },
+        "url": {
+          "type": "string",
+          "format": "uri"
+        },
+        "description": {
+          "anyOf": [
+            {
+              "type": "string",
+              "minLength": 1
+            },
+            {
+              "type": "object",
+              "propertyNames": {
+                "type": "string",
+                "pattern": "^[A-Za-z0-9]+(?:-[A-Za-z0-9]+)*$"
+              },
+              "additionalProperties": {
+                "type": "string",
+                "minLength": 1
+              }
+            }
+          ]
+        },
+        "tagline": {
+          "anyOf": [
+            {
+              "type": "string",
+              "minLength": 1
+            },
+            {
+              "type": "object",
+              "propertyNames": {
+                "type": "string",
+                "pattern": "^[A-Za-z0-9]+(?:-[A-Za-z0-9]+)*$"
+              },
+              "additionalProperties": {
+                "type": "string",
+                "minLength": 1
+              }
+            }
+          ]
+        },
+        "repository": {
+          "type": "string",
+          "format": "uri"
+        },
+        "themeColor": {
+          "type": "string",
+          "pattern": "^#[0-9a-f]{6}$"
+        },
+        "themeColorDark": {
+          "type": "string",
+          "pattern": "^#[0-9a-f]{6}$"
+        }
+      },
+      "required": ["name", "shortName", "url", "description"],
+      "additionalProperties": false
+    },
+    "contact": {
+      "type": "object",
+      "properties": {
+        "primary": {
+          "type": "string",
+          "format": "uri"
+        },
+        "security": {
+          "type": "string",
+          "format": "uri"
+        },
+        "support": {
+          "type": "string",
+          "format": "uri"
+        },
+        "email": {
+          "type": "string",
+          "format": "email",
+          "pattern": "^(?!\\.)(?!.*\\.\\.)([A-Za-z0-9_'+\\-\\.]*)[A-Za-z0-9_+-]@([A-Za-z0-9][A-Za-z0-9\\-]*\\.)+[A-Za-z]{2,}$"
+        },
+        "phone": {
+          "type": "string",
+          "minLength": 1
+        },
+        "social": {
+          "default": {},
+          "type": "object",
+          "propertyNames": {
+            "type": "string",
+            "minLength": 1
+          },
+          "additionalProperties": {
+            "type": "string",
+            "format": "uri"
+          }
+        }
+      },
+      "required": ["primary"],
+      "additionalProperties": false
+    },
+    "owner": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "type": "string",
+          "enum": ["organization", "person"]
+        },
+        "name": {
+          "anyOf": [
+            {
+              "type": "string",
+              "minLength": 1
+            },
+            {
+              "type": "object",
+              "propertyNames": {
+                "type": "string",
+                "pattern": "^[A-Za-z0-9]+(?:-[A-Za-z0-9]+)*$"
+              },
+              "additionalProperties": {
+                "type": "string",
+                "minLength": 1
+              }
+            }
+          ]
+        },
+        "url": {
+          "type": "string",
+          "format": "uri"
+        },
+        "email": {
+          "type": "string",
+          "format": "email",
+          "pattern": "^(?!\\.)(?!.*\\.\\.)([A-Za-z0-9_'+\\-\\.]*)[A-Za-z0-9_+-]@([A-Za-z0-9][A-Za-z0-9\\-]*\\.)+[A-Za-z]{2,}$"
+        },
+        "logo": {
+          "type": "string",
+          "minLength": 1
+        },
+        "sameAs": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "format": "uri"
+          }
+        }
+      },
+      "required": ["type", "name"],
+      "additionalProperties": false
+    },
+    "i18n": {
+      "type": "object",
+      "properties": {
+        "defaultLocale": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9]+(?:-[A-Za-z0-9]+)*$"
+        },
+        "locales": {
+          "type": "object",
+          "propertyNames": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9]+(?:-[A-Za-z0-9]+)*$"
+          },
+          "additionalProperties": {
+            "type": "object",
+            "properties": {
+              "label": {
+                "type": "string",
+                "minLength": 1
+              },
+              "lang": {
+                "type": "string",
+                "pattern": "^[A-Za-z0-9]+(?:-[A-Za-z0-9]+)*$"
+              },
+              "dir": {
+                "default": "ltr",
+                "type": "string",
+                "enum": ["ltr", "rtl"]
+              },
+              "codes": {
+                "minItems": 1,
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "pattern": "^[A-Za-z0-9]+(?:-[A-Za-z0-9]+)*$"
+                }
+              }
+            },
+            "required": ["label"],
+            "additionalProperties": false
+          }
+        },
+        "fallback": {
+          "default": {},
+          "type": "object",
+          "propertyNames": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9]+(?:-[A-Za-z0-9]+)*$"
+          },
+          "additionalProperties": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9]+(?:-[A-Za-z0-9]+)*$"
+          }
+        },
+        "domains": {
+          "type": "object",
+          "propertyNames": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9]+(?:-[A-Za-z0-9]+)*$"
+          },
+          "additionalProperties": {
+            "type": "string",
+            "format": "uri"
+          }
+        },
+        "routing": {
+          "default": {
+            "prefixDefaultLocale": false,
+            "redirectToDefaultLocale": false,
+            "fallbackType": "redirect"
+          },
+          "anyOf": [
+            {
+              "type": "string",
+              "const": "manual"
+            },
+            {
+              "type": "object",
+              "properties": {
+                "prefixDefaultLocale": {
+                  "default": false,
+                  "type": "boolean"
+                },
+                "redirectToDefaultLocale": {
+                  "default": false,
+                  "type": "boolean"
+                },
+                "fallbackType": {
+                  "default": "redirect",
+                  "type": "string",
+                  "enum": ["redirect", "rewrite"]
+                }
+              },
+              "additionalProperties": false
+            }
+          ]
+        }
+      },
+      "required": ["defaultLocale", "locales"],
+      "additionalProperties": false
+    },
+    "seo": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "object",
+          "properties": {
+            "default": {
+              "anyOf": [
+                {
+                  "type": "string",
+                  "minLength": 1
+                },
+                {
+                  "type": "object",
+                  "propertyNames": {
+                    "type": "string",
+                    "pattern": "^[A-Za-z0-9]+(?:-[A-Za-z0-9]+)*$"
+                  },
+                  "additionalProperties": {
+                    "type": "string",
+                    "minLength": 1
+                  }
+                }
+              ]
+            },
+            "pattern": {
+              "type": "string",
+              "minLength": 1
+            }
+          },
+          "required": ["default", "pattern"],
+          "additionalProperties": false
+        },
+        "robots": {
+          "default": {
+            "index": true,
+            "follow": true
+          },
+          "type": "object",
+          "properties": {
+            "index": {
+              "default": true,
+              "type": "boolean"
+            },
+            "follow": {
+              "default": true,
+              "type": "boolean"
+            }
+          },
+          "additionalProperties": false
+        },
+        "openGraph": {
+          "default": {
+            "type": "website",
+            "twitter": {
+              "card": "summary_large_image"
+            }
+          },
+          "type": "object",
+          "properties": {
+            "type": {
+              "default": "website",
+              "type": "string",
+              "enum": ["website", "profile"]
+            },
+            "image": {
+              "type": "object",
+              "properties": {
+                "src": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "alt": {
+                  "anyOf": [
+                    {
+                      "type": "string",
+                      "minLength": 1
+                    },
+                    {
+                      "type": "object",
+                      "propertyNames": {
+                        "type": "string",
+                        "pattern": "^[A-Za-z0-9]+(?:-[A-Za-z0-9]+)*$"
+                      },
+                      "additionalProperties": {
+                        "type": "string",
+                        "minLength": 1
+                      }
+                    }
+                  ]
+                },
+                "width": {
+                  "type": "integer",
+                  "exclusiveMinimum": 0,
+                  "maximum": 9007199254740991
+                },
+                "height": {
+                  "type": "integer",
+                  "exclusiveMinimum": 0,
+                  "maximum": 9007199254740991
+                }
+              },
+              "required": ["src", "alt"],
+              "additionalProperties": false
+            },
+            "twitter": {
+              "default": {
+                "card": "summary_large_image"
+              },
+              "type": "object",
+              "properties": {
+                "card": {
+                  "default": "summary_large_image",
+                  "type": "string",
+                  "enum": ["summary", "summary_large_image"]
+                },
+                "site": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "creator": {
+                  "type": "string",
+                  "minLength": 1
+                }
+              },
+              "additionalProperties": false
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      "required": ["title"],
+      "additionalProperties": false
+    },
+    "metadata": {
+      "default": {
+        "keywords": [],
+        "custom": {}
+      },
+      "type": "object",
+      "properties": {
+        "applicationName": {
+          "anyOf": [
+            {
+              "type": "string",
+              "minLength": 1
+            },
+            {
+              "type": "object",
+              "propertyNames": {
+                "type": "string",
+                "pattern": "^[A-Za-z0-9]+(?:-[A-Za-z0-9]+)*$"
+              },
+              "additionalProperties": {
+                "type": "string",
+                "minLength": 1
+              }
+            }
+          ]
+        },
+        "referrer": {
+          "type": "string",
+          "enum": [
+            "no-referrer",
+            "no-referrer-when-downgrade",
+            "origin",
+            "origin-when-cross-origin",
+            "same-origin",
+            "strict-origin",
+            "strict-origin-when-cross-origin",
+            "unsafe-url"
+          ]
+        },
+        "keywords": {
+          "default": [],
+          "type": "array",
+          "items": {
+            "anyOf": [
+              {
+                "type": "string",
+                "minLength": 1
+              },
+              {
+                "type": "object",
+                "propertyNames": {
+                  "type": "string",
+                  "pattern": "^[A-Za-z0-9]+(?:-[A-Za-z0-9]+)*$"
+                },
+                "additionalProperties": {
+                  "type": "string",
+                  "minLength": 1
+                }
+              }
+            ]
+          }
+        },
+        "custom": {
+          "default": {},
+          "type": "object",
+          "propertyNames": {
+            "type": "string",
+            "minLength": 1
+          },
+          "additionalProperties": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "assets": {
+      "default": {
+        "icons": []
+      },
+      "type": "object",
+      "properties": {
+        "manifest": {
+          "type": "string",
+          "minLength": 1
+        },
+        "icons": {
+          "default": [],
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "href": {
+                "type": "string",
+                "minLength": 1
+              },
+              "type": {
+                "type": "string",
+                "minLength": 1
+              },
+              "sizes": {
+                "type": "string",
+                "minLength": 1
+              }
+            },
+            "required": ["href"],
+            "additionalProperties": false
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "structuredData": {
+      "default": {
+        "enabled": true,
+        "websiteId": "#website",
+        "ownerId": "#owner"
+      },
+      "type": "object",
+      "properties": {
+        "enabled": {
+          "default": true,
+          "type": "boolean"
+        },
+        "websiteId": {
+          "default": "#website",
+          "type": "string",
+          "minLength": 1
+        },
+        "ownerId": {
+          "default": "#owner",
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "required": ["schemaVersion", "site", "contact", "owner", "i18n", "seo"],
+  "additionalProperties": false
+}

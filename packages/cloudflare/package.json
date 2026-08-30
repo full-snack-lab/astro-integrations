@@ -1,0 +1,51 @@
+{
+  "name": "@fullsnacklab/astro-cloudflare",
+  "version": "0.1.0",
+  "description": "Focused Cloudflare build seams for Astro Worker applications.",
+  "keywords": [
+    "astro",
+    "astro-integration",
+    "cloudflare",
+    "cloudflare-workers",
+    "wrangler"
+  ],
+  "homepage": "https://github.com/full-snack-lab/astro-integrations/tree/main/packages/cloudflare#readme",
+  "bugs": {
+    "url": "https://github.com/full-snack-lab/astro-integrations/issues"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/full-snack-lab/astro-integrations.git",
+    "directory": "packages/cloudflare"
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "type": "module",
+  "sideEffects": false,
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "publishConfig": {
+    "access": "public",
+    "provenance": true
+  },
+  "scripts": {
+    "build": "cd ../.. && bunup --filter astro-cloudflare",
+    "test": "bun test",
+    "type-check": "tsc --noEmit -p tsconfig.json && tsc --noEmit -p tsconfig.test.json",
+    "prepack": "bun run build"
+  },
+  "peerDependencies": {
+    "astro": "^7.2.9"
+  }
+}

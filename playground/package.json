@@ -3,16 +3,30 @@
   "version": "0.0.1",
   "type": "module",
   "scripts": {
+    "auth:migrate": "bun scripts/migrate-auth.ts",
+    "auth:migrate:cloudflare": "wrangler d1 migrations apply DB --local",
+    "auth:migrate:cloudflare:remote": "wrangler d1 migrations apply DB --remote",
     "dev": "astro dev",
     "build": "astro build",
+    "build:cloudflare": "astro build --config astro.config.cloudflare.mjs",
     "preview": "astro preview",
     "astro": "astro"
   },
   "dependencies": {
+    "@astrojs/cloudflare": "^14.2.5",
     "@astrojs/node": "^11.1.4",
+    "@astrojs/react": "^6.0.4",
+    "@emdash-cms/cloudflare": "^0.35.0",
     "@fullsnacklab/astro-better-auth": "../packages/better-auth",
+    "@fullsnacklab/astro-cloudflare": "../packages/cloudflare",
+    "@fullsnacklab/astro-emdash": "../packages/emdash",
+    "@fullsnacklab/astro-security": "../packages/security",
+    "@fullsnacklab/astro-theme": "../packages/theme",
     "astro": "^7.2.9",
-    "better-auth": "^1.7.2"
+    "better-auth": "^1.7.2",
+    "emdash": "^0.35.0",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0"
   },
   "engines": {
     "node": ">=22.12.0"

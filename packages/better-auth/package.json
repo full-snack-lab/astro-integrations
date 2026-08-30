@@ -20,6 +20,7 @@
   },
   "files": [
     "dist",
+    "examples",
     "README.md",
     "LICENSE"
   ],
@@ -42,10 +43,15 @@
     "build": "cd ../.. && bunup --filter astro-better-auth",
     "test": "bun test",
     "type-check": "tsc --noEmit -p tsconfig.json && tsc --noEmit -p tsconfig.test.json",
+    "release:check": "bun run test && bun run type-check && bun run build && npm pack --dry-run",
+    "prepublishOnly": "bun run test && bun run type-check",
     "prepack": "bun run build"
   },
   "peerDependencies": {
     "astro": "^7.2.9",
     "better-auth": "^1.7.2"
+  },
+  "engines": {
+    "node": ">=22.12.0"
   }
 }

@@ -1,7 +1,17 @@
 # build output
 dist/
+dist-cloudflare/
+.wrangler/
 # generated types
 .astro/
+.emdash/migrations.json
+
+# local application state
+auth.db
+auth.db-shm
+auth.db-wal
+data.db
+uploads/
 
 # dependencies
 node_modules/
@@ -14,6 +24,7 @@ pnpm-debug.log*
 
 
 # environment variables
+.dev.vars
 .env
 .env.production
 

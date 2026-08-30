@@ -8,11 +8,45 @@ Public Astro integrations maintained by Full Snack Lab.
 
 Mount a user-owned Better Auth instance in Astro with an injected catch-all route and optional typed session middleware.
 
+The package includes tested Node and Bun SQLite examples, Cloudflare D1 wiring, and repeatable migration guidance.
+
 ```sh
 bun add @fullsnacklab/astro-better-auth better-auth
 ```
 
 See the [package README](./packages/better-auth) for setup and API documentation.
+
+### [`@fullsnacklab/astro-security`](./packages/security)
+
+Apply Astro's hash-aware page CSP, provider-neutral dynamic response headers, and optional static asset headers.
+
+```sh
+bun add @fullsnacklab/astro-security
+```
+
+### [`@fullsnacklab/astro-cloudflare`](./packages/cloudflare)
+
+Keep Cloudflare Worker module aliases and generated Wrangler resource substitutions out of application configuration.
+
+```sh
+bun add @fullsnacklab/astro-cloudflare @astrojs/cloudflare
+```
+
+### [`@fullsnacklab/astro-emdash`](./packages/emdash)
+
+Use friendly local and Cloudflare persistence presets with Emdash while keeping advanced CMS policy application-owned.
+
+```sh
+bun add @fullsnacklab/astro-emdash emdash
+```
+
+### [`@fullsnacklab/astro-theme`](./packages/theme)
+
+Load validated site identity, i18n, SEO, Open Graph, metadata, and structured data from YAML with provider-neutral runtime adapters.
+
+```sh
+bun add @fullsnacklab/astro-theme
+```
 
 ## Development
 

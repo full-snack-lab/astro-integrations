@@ -1,18 +1,44 @@
 ---
-const email = Astro.locals.user?.email ?? 'anonymous';
+import staticTheme from "virtual:fullsnack-theme";
+import { getTheme } from "virtual:fullsnack-theme/server";
+import {
+  createPageMetadata,
+  createSiteJsonLd,
+  resolveLocalizedText,
+} from "@fullsnacklab/astro-theme/runtime";
+
+const email = Astro.locals.user?.email ?? "anonymous";
+const runtimeTheme = await getTheme({ request: Astro.request, locals: Astro.locals });
+const locale = runtimeTheme.i18n.defaultLocale;
+const metadata = createPageMetadata(runtimeTheme, {
+  pathname: Astro.url.pathname,
+  title: "Astro integrations playground",
+});
+const jsonLd = createSiteJsonLd(runtimeTheme, locale);
+const staticName = resolveLocalizedText(staticTheme.site.name, locale, staticTheme.i18n);
+const runtimeName = resolveLocalizedText(runtimeTheme.site.name, locale, runtimeTheme.i18n);
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro Better Auth playground</title>
-	</head>
-	<body>
-		<h1>Astro Better Auth playground</h1>
-		<p data-session={email}>{email}</p>
-	</body>
+<html lang={locale}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <meta name="description" content={metadata.description} />
+    <meta name="robots" content={metadata.robots} />
+    <meta property="og:site_name" content={metadata.openGraph.siteName} />
+    <meta property="og:title" content={metadata.openGraph.title} />
+    <meta property="og:description" content={metadata.openGraph.description} />
+    <meta property="og:url" content={metadata.openGraph.url} />
+    <link rel="canonical" href={metadata.canonical} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <title>{metadata.title}</title>
+    <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+  </head>
+  <body>
+    <h1>{runtimeName}</h1>
+    <p data-static-theme={staticName}>{staticName}</p>
+    <p data-runtime-theme={runtimeName}>{runtimeName}</p>
+    <p data-session={email}>{email}</p>
+  </body>
 </html>

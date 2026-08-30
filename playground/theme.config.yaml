@@ -1,0 +1,41 @@
+# yaml-language-server: $schema=./node_modules/@fullsnacklab/astro-theme/schema.json
+schemaVersion: 1
+site:
+  name: Static Theme Playground
+  shortName: Theme Playground
+  url: https://example.com
+  description: Exercises static and runtime-backed theme settings.
+  tagline: One YAML contract, multiple providers.
+  themeColor: "#b91c1c"
+  themeColorDark: "#0e0e13"
+contact:
+  primary: mailto:hello@example.com
+  security: mailto:security@example.com
+owner:
+  type: organization
+  name: Full Snack Lab
+  url: https://example.com/about
+i18n:
+  defaultLocale: en
+  locales:
+    en:
+      label: English
+      lang: en-us
+seo:
+  title:
+    default: Static Theme Playground
+    pattern: "{title} — {site}"
+  openGraph:
+    image:
+      src: /favicon.svg
+      alt: Full Snack Lab playground
+metadata:
+  applicationName: Astro integrations playground
+  custom:
+    color-scheme: light dark
+assets:
+  icons:
+    - href: /favicon.svg
+      type: image/svg+xml
+structuredData:
+  enabled: true

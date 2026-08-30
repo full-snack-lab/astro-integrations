@@ -1,0 +1,77 @@
+# yaml-language-server: $schema=../../schema.json
+schemaVersion: 1
+site:
+  name:
+    en: Full Snack Lab
+    fr: Le Labo Full Snack
+  shortName: FSL
+  url: https://example.com
+  description:
+    en: Complete web foundations without application lock-in.
+    fr: Des fondations web complètes sans verrouillage applicatif.
+  tagline: Build the whole snack.
+  themeColor: "#b91c1c"
+  themeColorDark: "#0e0e13"
+contact:
+  primary: mailto:hello@example.com
+  security: mailto:security@example.com
+  support: https://example.com/support
+  social:
+    github: https://github.com/full-snack-lab
+owner:
+  type: organization
+  name: Full Snack Lab
+  url: https://example.com/about
+  logo: /brand/logo.png
+  sameAs:
+    - https://github.com/full-snack-lab
+i18n:
+  defaultLocale: en
+  locales:
+    en:
+      label: English
+      lang: en-us
+      dir: ltr
+    fr:
+      label: Français
+      lang: fr-fr
+      dir: ltr
+  fallback:
+    fr: en
+  routing:
+    prefixDefaultLocale: false
+    redirectToDefaultLocale: false
+    fallbackType: rewrite
+seo:
+  title:
+    default: Full Snack Lab
+    pattern: "{title} — {site}"
+  robots:
+    index: true
+    follow: true
+  openGraph:
+    type: website
+    image:
+      src: /og-default.png
+      alt: Full Snack Lab
+      width: 1200
+      height: 630
+    twitter:
+      card: summary_large_image
+      site: "@fullsnacklab"
+metadata:
+  applicationName: Full Snack Lab
+  referrer: strict-origin-when-cross-origin
+  custom:
+    color-scheme: light dark
+assets:
+  manifest: /site.webmanifest
+  icons:
+    - href: /favicon.svg
+      type: image/svg+xml
+    - href: /icon-192.png
+      sizes: 192x192
+structuredData:
+  enabled: true
+  websiteId: "#website"
+  ownerId: "#owner"

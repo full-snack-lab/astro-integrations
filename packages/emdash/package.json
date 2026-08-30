@@ -1,0 +1,62 @@
+{
+  "name": "@fullsnacklab/astro-emdash",
+  "version": "0.1.0",
+  "description": "Friendly local and Cloudflare persistence presets for the Emdash Astro integration.",
+  "keywords": [
+    "astro",
+    "astro-integration",
+    "cloudflare",
+    "cms",
+    "emdash"
+  ],
+  "homepage": "https://github.com/full-snack-lab/astro-integrations/tree/main/packages/emdash#readme",
+  "bugs": {
+    "url": "https://github.com/full-snack-lab/astro-integrations/issues"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/full-snack-lab/astro-integrations.git",
+    "directory": "packages/emdash"
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
+  "type": "module",
+  "sideEffects": false,
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./cloudflare": {
+      "types": "./dist/cloudflare.d.ts",
+      "import": "./dist/cloudflare.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "publishConfig": {
+    "access": "public",
+    "provenance": true
+  },
+  "scripts": {
+    "build": "cd ../.. && bunup --filter astro-emdash",
+    "test": "bun test",
+    "type-check": "tsc --noEmit -p tsconfig.json && tsc --noEmit -p tsconfig.test.json",
+    "prepack": "bun run build"
+  },
+  "peerDependencies": {
+    "@emdash-cms/cloudflare": "^0.35.0",
+    "astro": "^7.2.9",
+    "emdash": "^0.35.0"
+  },
+  "peerDependenciesMeta": {
+    "@emdash-cms/cloudflare": {
+      "optional": true
+    }
+  }
+}
