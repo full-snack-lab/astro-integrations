@@ -5,7 +5,6 @@
     "": {
       "name": "tremendous-transit",
       "dependencies": {
-        "@fullsnacklab/astro-theme": "../packages/theme",
         "@astrojs/cloudflare": "^14.2.5",
         "@astrojs/node": "^11.1.4",
         "@astrojs/react": "^6.0.4",
@@ -13,7 +12,10 @@
         "@fullsnacklab/astro-better-auth": "../packages/better-auth",
         "@fullsnacklab/astro-cloudflare": "../packages/cloudflare",
         "@fullsnacklab/astro-emdash": "../packages/emdash",
+        "@fullsnacklab/astro-flow": "../packages/flow",
+        "@fullsnacklab/astro-integration": "../packages/integration",
         "@fullsnacklab/astro-security": "../packages/security",
+        "@fullsnacklab/astro-theme": "../packages/theme",
         "astro": "^7.2.9",
         "better-auth": "^1.7.2",
         "emdash": "^0.35.0",
@@ -288,6 +290,10 @@
     "@fullsnacklab/astro-cloudflare": ["@fullsnacklab/astro-cloudflare@file:../packages/cloudflare", { "peerDependencies": { "astro": "^7.2.9" } }],
 
     "@fullsnacklab/astro-emdash": ["@fullsnacklab/astro-emdash@file:../packages/emdash", { "peerDependencies": { "@emdash-cms/cloudflare": "^0.35.0", "astro": "^7.2.9", "emdash": "^0.35.0" }, "optionalPeers": ["@emdash-cms/cloudflare"] }],
+
+    "@fullsnacklab/astro-flow": ["@fullsnacklab/astro-flow@file:../packages/flow", { "peerDependencies": { "astro": "^7.2.9" } }],
+
+    "@fullsnacklab/astro-integration": ["@fullsnacklab/astro-integration@file:../packages/integration", { "peerDependencies": { "astro": "^7.2.9" } }],
 
     "@fullsnacklab/astro-security": ["@fullsnacklab/astro-security@file:../packages/security", { "peerDependencies": { "astro": "^7.2.9" } }],
 

@@ -1,0 +1,5 @@
+---
+import { Iterate as IterateFactory } from '../factory.js';
+const { of } = Astro.props;
+---
+<IterateFactory of={of}><slot /></IterateFactory>

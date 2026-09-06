@@ -1,0 +1,66 @@
+{
+  "name": "@fullsnacklab/astro-flow",
+  "version": "0.1.0",
+  "description": "Declarative control flow components and async iteration primitives for Astro.",
+  "keywords": [
+    "astro",
+    "control-flow",
+    "components",
+    "iterate",
+    "switch",
+    "when"
+  ],
+  "homepage": "https://github.com/full-snack-lab/astro-integrations/tree/main/packages/flow#readme",
+  "bugs": {
+    "url": "https://github.com/full-snack-lab/astro-integrations/issues"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/full-snack-lab/astro-integrations.git",
+    "directory": "packages/flow"
+  },
+  "files": [
+    "dist",
+    "src/components",
+    "README.md",
+    "LICENSE"
+  ],
+  "type": "module",
+  "sideEffects": false,
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./Iterate.astro": "./src/components/Iterate.astro",
+    "./Switch.astro": "./src/components/Switch.astro",
+    "./Case.astro": "./src/components/Case.astro",
+    "./When.astro": "./src/components/When.astro",
+    "./AstroIterate.astro": "./src/components/AstroIterate.astro",
+    "./AstroSwitch.astro": "./src/components/AstroSwitch.astro",
+    "./AstroCase.astro": "./src/components/AstroCase.astro",
+    "./AstroWhen.astro": "./src/components/AstroWhen.astro",
+    "./package.json": "./package.json"
+  },
+  "publishConfig": {
+    "access": "public",
+    "provenance": true
+  },
+  "scripts": {
+    "build": "cd ../.. && bunup --filter astro-flow",
+    "test": "bun test",
+    "type-check": "tsc --noEmit -p tsconfig.json && tsc --noEmit -p tsconfig.test.json",
+    "release:check": "bun run test && bun run type-check && bun run build && npm pack --dry-run",
+    "prepublishOnly": "bun run test && bun run type-check",
+    "prepack": "bun run build"
+  },
+  "peerDependencies": {
+    "astro": "^7.2.9"
+  },
+  "engines": {
+    "node": ">=22.12.0"
+  }
+}

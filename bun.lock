@@ -43,6 +43,20 @@
         "@emdash-cms/cloudflare",
       ],
     },
+    "packages/flow": {
+      "name": "@fullsnacklab/astro-flow",
+      "version": "0.1.0",
+      "peerDependencies": {
+        "astro": "^7.2.9",
+      },
+    },
+    "packages/integration": {
+      "name": "@fullsnacklab/astro-integration",
+      "version": "0.1.0",
+      "peerDependencies": {
+        "astro": "^7.2.9",
+      },
+    },
     "packages/security": {
       "name": "@fullsnacklab/astro-security",
       "version": "0.1.0",
@@ -330,6 +344,10 @@
     "@fullsnacklab/astro-cloudflare": ["@fullsnacklab/astro-cloudflare@workspace:packages/cloudflare"],
 
     "@fullsnacklab/astro-emdash": ["@fullsnacklab/astro-emdash@workspace:packages/emdash"],
+
+    "@fullsnacklab/astro-flow": ["@fullsnacklab/astro-flow@workspace:packages/flow"],
+
+    "@fullsnacklab/astro-integration": ["@fullsnacklab/astro-integration@workspace:packages/integration"],
 
     "@fullsnacklab/astro-security": ["@fullsnacklab/astro-security@workspace:packages/security"],
 

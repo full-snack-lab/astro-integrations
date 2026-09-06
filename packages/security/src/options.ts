@@ -1,4 +1,9 @@
 import type { AstroIntegrationMiddleware, AstroUserConfig } from "astro";
+import {
+  type CacheControlOptions,
+  type ResolvedCacheControlOptions,
+  resolveCacheControlOptions,
+} from "./cache.js";
 
 const INTEGRATION_NAME = "@fullsnacklab/astro-security";
 
@@ -34,6 +39,16 @@ export interface StaticSecurityHeadersOptions {
   contentSecurityPolicy?: boolean;
 }
 
+/** Controls privacy-specific headers such as GPC. */
+export interface PrivacyHeadersOptions {
+  /**
+   * Whether to append 'Sec-GPC' to the Vary header.
+   *
+   * @defaultValue `false`
+   */
+  varyOnGpc?: boolean;
+}
+
 /** Configures secure Astro page, dynamic-response, and static-asset policy. */
 export interface SiteSecurityOptions {
   /**
@@ -55,6 +70,14 @@ export interface SiteSecurityOptions {
    * @defaultValue `false`
    */
   staticHeaders?: boolean | StaticSecurityHeadersOptions;
+  /**
+   * Configures dynamic Cache-Control response middleware.
+   */
+  cacheControl?: false | CacheControlOptions;
+  /**
+   * Configures privacy-specific headers.
+   */
+  privacy?: PrivacyHeadersOptions;
 }
 
 /** Secure page policy that leaves script and style hashing to Astro. */
@@ -84,6 +107,8 @@ export interface ResolvedSiteSecurityOptions {
   headers: SecurityHeaderOverrides;
   middleware: { order: "post" | "pre" } | null;
   staticHeaders: StaticSecurityHeadersOptions | null;
+  cacheControl: ResolvedCacheControlOptions | null;
+  privacy: PrivacyHeadersOptions | null;
 }
 
 /** Validates and normalizes public integration options. */
@@ -99,6 +124,8 @@ export function resolveSiteSecurityOptions(
     headers: resolveHeaders(options.headers),
     middleware: resolveMiddleware(options.middleware),
     staticHeaders: resolveStaticHeaders(options.staticHeaders),
+    cacheControl: resolveCacheControlOption(options.cacheControl),
+    privacy: resolvePrivacyOption(options.privacy),
   };
 }
 
@@ -177,5 +204,27 @@ function resolveStaticHeaders(
   }
   return {
     contentSecurityPolicy: staticHeaders.contentSecurityPolicy ?? false,
+  };
+}
+
+function resolveCacheControlOption(
+  cacheControl: SiteSecurityOptions["cacheControl"],
+): ResolvedCacheControlOptions | null {
+  if (cacheControl === false || cacheControl === undefined) return null;
+  if (!cacheControl || cacheControl.constructor !== Object) {
+    throw new TypeError(`${INTEGRATION_NAME}: cacheControl must be false or an options object.`);
+  }
+  return resolveCacheControlOptions(cacheControl);
+}
+
+function resolvePrivacyOption(
+  privacy: SiteSecurityOptions["privacy"],
+): PrivacyHeadersOptions | null {
+  if (privacy === undefined) return null;
+  if (!privacy || privacy.constructor !== Object) {
+    throw new TypeError(`${INTEGRATION_NAME}: privacy must be an options object.`);
+  }
+  return {
+    varyOnGpc: privacy.varyOnGpc ?? false,
   };
 }

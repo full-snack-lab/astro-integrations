@@ -1,6 +1,7 @@
 import { fileURLToPath } from "node:url";
 import type { AstroIntegrationMiddleware } from "astro";
 import { DEFAULT_ROUTE, INTEGRATION_NAME } from "./constants.js";
+import type { RouteGuardOptions } from "./guard.js";
 
 /** Controls the middleware that exposes the current Better Auth session to Astro. */
 export interface BetterAuthMiddlewareOptions {
@@ -46,6 +47,22 @@ export interface BetterAuthIntegrationOptions {
    * @defaultValue `'/api/auth/[...all]'`
    */
   route?: string;
+
+  /**
+   * Declarative route protection configuration.
+   *
+   * @example
+   * ```ts
+   * betterAuth({
+   *   auth: './src/lib/auth.ts',
+   *   guard: {
+   *     protectedRoutes: ['/cases/*', '/user'],
+   *     loginPath: '/login',
+   *   },
+   * })
+   * ```
+   */
+  guard?: RouteGuardOptions;
 }
 
 /** Normalized options consumed by the integration hooks. */
@@ -53,6 +70,7 @@ export interface ResolvedBetterAuthIntegrationOptions {
   auth: string | URL;
   middleware: Required<BetterAuthMiddlewareOptions> | null;
   route: string;
+  guard: RouteGuardOptions | null;
 }
 
 /**
@@ -80,6 +98,7 @@ export function resolveBetterAuthOptions(
     auth,
     middleware: resolveMiddlewareOptions(options.middleware),
     route,
+    guard: options.guard ?? null,
   };
 }
 
