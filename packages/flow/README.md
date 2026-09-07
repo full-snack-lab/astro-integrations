@@ -2,6 +2,16 @@
 
 Declarative control flow components and async iteration primitives for Astro.
 
+An independently maintained derivative of [`@astropub/flow`](https://github.com/astro-community/flow), originally authored by **[Jonathan Neal](https://github.com/jonathantneal)**. Credit for the original control-flow implementation belongs to Jonathan Neal and the upstream contributors.
+
+## Origins and maintenance
+
+We maintain this derivative to preserve a control-flow API we rely on, strengthen its TypeScript contracts, and support current Astro versions. Full Snack Lab's changes include the shared-package extraction, typed boundaries, slot-rendering compatibility fixes, and regression coverage. This is a continuation of the original work, not a claim that we invented it.
+
+The original `@astropub/flow` package declares **CC0-1.0**. Full Snack Lab's additions and modifications are provided under **MIT**; this does not replace the upstream CC0 dedication. See [LICENSE](./LICENSE) for the licensing distinction and [the original repository](https://github.com/astro-community/flow) for its source and history.
+
+This package is maintained independently; no endorsement by Jonathan Neal or the upstream project is implied.
+
 ## Installation
 
 ```bash

@@ -1,4 +1,18 @@
-MIT License
+Upstream attribution and licensing
+
+This package is derived from @astropub/flow by Jonathan Neal and its
+upstream contributors: https://github.com/astro-community/flow
+
+The original package declares CC0-1.0 (CC0 1.0 Universal):
+https://creativecommons.org/publicdomain/zero/1.0/legalcode
+
+The upstream CC0 dedication remains applicable to the original work.
+The MIT license and Full Snack Lab copyright notice below apply to
+Full Snack Lab's additions and modifications, not an assertion of
+original authorship or exclusive rights over the upstream work.
+No endorsement by the original author or upstream project is implied.
+
+MIT License (Full Snack Lab additions and modifications)
 
 Copyright (c) 2026 Full Snack Lab
 
