@@ -60,15 +60,15 @@ Author Astro integrations with shared route-registration helpers and an isolated
 
 This monorepo publishes independent packages. Related capabilities use package subpaths, such as `@fullsnacklab/astro-security/cache`; the repository root stays private.
 
-Changesets owns package versions and changelogs. See [RELEASING.md](./RELEASING.md) for the initial M3 release set, trusted-publisher configuration, and verification/publication gates.
+Changesets owns package versions and changelogs. See [RELEASING.md](./RELEASING.md) for versioning, trusted-publisher configuration, and verification/publication gates.
 
 ## Development
 
 ```sh
 bun install
+bun run build
 bun run test
 bun run type-check
-bun run build
 ```
 
 Please see [CONTRIBUTING.md](./CONTRIBUTING.md) for contribution guidelines.
