@@ -11,7 +11,8 @@
     "url": "git+https://github.com/full-snack-lab/astro-integrations.git"
   },
   "workspaces": [
-    "packages/*"
+    "packages/*",
+    "playground"
   ],
   "type": "module",
   "scripts": {
