@@ -20,16 +20,18 @@
     "format": "oxfmt",
     "lint": "oxlint",
     "prepare": "bun simple-git-hooks",
-    "release": "bumpp -r --commit --push --tag",
+    "changeset": "changeset",
+    "release": "changeset publish",
     "test": "bun test",
     "test:coverage": "bun test --coverage",
     "test:watch": "bun test --watch",
-    "type-check": "bun run --filter '*' type-check"
+    "type-check": "bun run --filter '*' type-check",
+    "version-packages": "changeset version && bun install --lockfile-only --ignore-scripts"
   },
   "devDependencies": {
+    "@changesets/cli": "^3.0.1",
     "@emdash-cms/cloudflare": "^0.35.0",
     "@types/bun": "^1.4.0",
-    "bumpp": "^12.2.2",
     "bunup": "^0.16.32",
     "emdash": "^0.35.0",
     "oxfmt": "^0.65.0",

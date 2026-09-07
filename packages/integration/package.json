@@ -1,6 +1,6 @@
 {
   "name": "@fullsnacklab/astro-integration",
-  "version": "0.1.0",
+  "version": "0.0.0",
   "description": "Universal authoring SDK and testing harness for Astro integrations.",
   "keywords": [
     "astro",
