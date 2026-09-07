@@ -4,7 +4,7 @@
 
 Publish each capability independently from this monorepo. Keep the repository root `private: true`; there is no umbrella npm package. Keep application authorization and route-selection policy in the consuming applications.
 
-The initial M3 Changesets plan has been applied locally (not yet published):
+The initial M3 Changesets plan has been applied locally. Flow and the integration SDK `0.1.0` bootstraps are published; auth/security `0.2.0` remain pending the OIDC release:
 
 | Package | Source version before versioning | Planned release |
 | --- | --- | --- |
@@ -24,6 +24,14 @@ Use Bun 1.4.0, matching the release workflow. Add a changeset for a consumer-vis
 Version PRs are maintainer-created. When pending changesets exist, create a release branch from main, run `bun run version-packages`, review the exact release set, and open a PR against main using the maintainer's GitHub account. Actions does not create or approve that PR. The initial M3 reconciliation branch already contains the version commit; do not run versioning again on its consumed changesets. `changeset version` is not an idempotent verification command.
 
 This is version/lockfile preparation, not validation. Commit the resulting package versions, changelogs, and lockfile together. Do not hand-edit resolved lockfile entries or reuse sibling-checkout `node_modules` links to make consumers resolve unpublished exports. Ordinary intra-monorepo workspace links are separate from the historical cross-repository sandbox links.
+
+## Bootstrap checkpoint
+
+The verified `@fullsnacklab/astro-flow@0.1.0` and `@fullsnacklab/astro-integration@0.1.0` tarballs have been published and their public registry SHA-512 integrities confirmed. Flow includes the Jonathan Neal / astro-community attribution correction; only README/LICENSE changed from its runtime-verified candidate. Do not repeat these bootstrap commands or try to replace either immutable version.
+
+Publication used the Keychain-backed `NPM_TOKEN` through an explicit repository `.npmrc` supplied with `--userconfig`, while npm ran outside the Bun-only consumer checkout. Merely moving to `/tmp` without that config selected a different stored credential. The approved local bootstrap skipped scripts and disabled provenance only for those two commands; package manifests still enable provenance. Initial registry 404s cleared after propagation and did not require another publication attempt.
+
+Complete trusted-publisher setup before the auth/security OIDC release. The bootstrap does not authorize additional test/build runs or silently activate CI.
 
 ## Verification gate
 

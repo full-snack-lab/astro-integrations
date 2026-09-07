@@ -48,11 +48,11 @@ Load validated site identity, i18n, SEO, Open Graph, metadata, and structured da
 bun add @fullsnacklab/astro-theme
 ```
 
-### [`@fullsnacklab/astro-flow`](./packages/flow) (unreleased)
+### [`@fullsnacklab/astro-flow`](./packages/flow)
 
 Share `Iterate`, `Switch`, `Case`, and `When` control-flow factories and `.astro` component entry points across applications.
 
-### [`@fullsnacklab/astro-integration`](./packages/integration) (unreleased)
+### [`@fullsnacklab/astro-integration`](./packages/integration)
 
 Author Astro integrations with shared route-registration helpers and an isolated `/testing` entry point. This is an authoring SDK, not an umbrella package containing the other integrations.
 
