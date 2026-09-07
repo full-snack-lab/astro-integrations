@@ -1,12 +1,13 @@
 {
   "name": "@fullsnacklab/astro-security",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Secure Astro CSP, dynamic response headers, and optional static asset headers.",
   "keywords": [
     "astro",
     "astro-integration",
     "content-security-policy",
-    "security-headers"
+    "security-headers",
+    "cache-control"
   ],
   "homepage": "https://github.com/full-snack-lab/astro-integrations/tree/main/packages/security#readme",
   "bugs": {
@@ -31,6 +32,10 @@
     ".": {
       "types": "./dist/index.d.ts",
       "import": "./dist/index.js"
+    },
+    "./cache": {
+      "types": "./dist/cache.d.ts",
+      "import": "./dist/cache.js"
     },
     "./package.json": "./package.json"
   },

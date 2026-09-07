@@ -36,7 +36,7 @@ export function siteSecurity(options: SiteSecurityOptions = {}): AstroIntegratio
         const middlewareEntrypoint = new URL("middleware.mjs", codegenDirectory);
         await writeFile(
           middlewareEntrypoint,
-          createSecurityMiddlewareSource(responseHeaders),
+          createSecurityMiddlewareSource(responseHeaders, resolved.cacheControl, resolved.privacy),
           "utf8",
         );
         addMiddleware({

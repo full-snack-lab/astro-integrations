@@ -48,6 +48,20 @@ Load validated site identity, i18n, SEO, Open Graph, metadata, and structured da
 bun add @fullsnacklab/astro-theme
 ```
 
+### [`@fullsnacklab/astro-flow`](./packages/flow)
+
+Share `Iterate`, `Switch`, `Case`, and `When` control-flow factories and `.astro` component entry points across applications.
+
+### [`@fullsnacklab/astro-integration`](./packages/integration)
+
+Author Astro integrations with shared route-registration helpers and an isolated `/testing` entry point. This is an authoring SDK, not an umbrella package containing the other integrations.
+
+## Releases
+
+This monorepo publishes independent packages. Related capabilities use package subpaths, such as `@fullsnacklab/astro-security/cache`; the repository root stays private.
+
+Changesets owns package versions and changelogs. See [RELEASING.md](./RELEASING.md) for the initial M3 release set, trusted-publisher configuration, and verification/publication gates.
+
 ## Development
 
 ```sh

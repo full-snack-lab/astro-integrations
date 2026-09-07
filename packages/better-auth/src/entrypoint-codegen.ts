@@ -1,3 +1,5 @@
+import type { RouteGuardOptions } from "./guard.js";
+
 /** Generated route and middleware modules written into Astro's codegen directory. */
 export interface BetterAuthEntrypointSources {
   middleware: string;
@@ -36,4 +38,48 @@ export const onRequest = defineMiddleware(async (context, next) => {
 });
 `,
   };
+}
+
+/**
+ * Generates route protection guard middleware.
+ */
+export function createGuardMiddlewareSource(
+  guardOptions: RouteGuardOptions,
+  authModule: string,
+): string {
+  const authImport = JSON.stringify(authModule);
+  const protectedRoutes = `[${guardOptions.protectedRoutes
+    .map((p) => (p instanceof RegExp ? p.toString() : JSON.stringify(p)))
+    .join(", ")}]`;
+  const apiRoutes = guardOptions.apiRoutes
+    ? `[${guardOptions.apiRoutes
+        .map((p) => (p instanceof RegExp ? p.toString() : JSON.stringify(p)))
+        .join(", ")}]`
+    : "undefined";
+  const loginPath =
+    guardOptions.loginPath !== undefined
+      ? JSON.stringify(guardOptions.loginPath)
+      : "undefined";
+  const returnToParam =
+    guardOptions.returnToParam !== undefined
+      ? JSON.stringify(guardOptions.returnToParam)
+      : "undefined";
+  const redirectToLogin =
+    guardOptions.redirectToLogin !== undefined
+      ? JSON.stringify(guardOptions.redirectToLogin)
+      : "undefined";
+
+  return `
+import { defineAuthGuard } from '@fullsnacklab/astro-better-auth/guard';
+import { auth } from ${authImport};
+
+export const onRequest = defineAuthGuard({
+  protectedRoutes: ${protectedRoutes},
+  apiRoutes: ${apiRoutes},
+  loginPath: ${loginPath},
+  returnToParam: ${returnToParam},
+  redirectToLogin: ${redirectToLogin},
+  auth,
+});
+`;
 }

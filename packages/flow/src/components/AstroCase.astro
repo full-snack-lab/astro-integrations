@@ -1,0 +1,32 @@
+---
+import { getSwitchState, evaluateCase } from '@fullsnacklab/astro-flow';
+
+type CaseValue =
+  | string
+  | null
+  | bigint
+  | undefined
+  | number
+  | boolean
+  | readonly CaseValue[]
+  | Readonly<Record<PropertyKey, CaseValue>>;
+
+type Props =
+  | {
+      of: CaseValue | ((value: unknown) => boolean);
+      default?: never;
+    }
+  | {
+      default: true;
+      of?: never;
+    };
+
+const switchState = getSwitchState();
+if (!switchState) {
+  throw new Error('<Case> component must be used inside a <Switch> component.');
+}
+
+const shouldRenderSlot = evaluateCase(Astro.props, switchState);
+---
+{shouldRenderSlot && <slot />}
+

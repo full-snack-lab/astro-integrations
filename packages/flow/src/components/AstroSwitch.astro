@@ -1,0 +1,21 @@
+---
+import { statesOfSwitch, HTMLString } from '@fullsnacklab/astro-flow';
+
+interface Props {
+  of?: unknown;
+  test?: unknown;
+}
+
+const condition = Astro.props.of ?? Astro.props.test;
+const state = { hasRenderedCase: false, hasRenderedDefault: false, value: condition };
+
+statesOfSwitch.push(state);
+let htmlContent = '';
+try {
+  htmlContent = await Astro.slots.render('default');
+} finally {
+  statesOfSwitch.pop();
+}
+const htmlPart = new HTMLString(htmlContent);
+---
+<Fragment set:html={htmlPart} />

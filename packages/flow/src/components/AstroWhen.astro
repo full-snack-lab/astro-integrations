@@ -1,0 +1,14 @@
+---
+import { isTruthyWhenProps, HTMLString } from '@fullsnacklab/astro-flow';
+
+interface Props {
+  [key: string]: unknown;
+}
+
+const props = Astro.props;
+const hasTruthyWhen = isTruthyWhenProps(props);
+const slotToRender = hasTruthyWhen ? 'default' : Object.hasOwn(Astro.slots, 'else') ? 'else' : '';
+const htmlPart = new HTMLString(slotToRender ? await Astro.slots.render(slotToRender) : '');
+---
+<Fragment set:html={htmlPart} />
+

@@ -1,0 +1,58 @@
+---
+import When from '@fullsnacklab/astro-flow/When.astro';
+import Switch from '@fullsnacklab/astro-flow/Switch.astro';
+import Case from '@fullsnacklab/astro-flow/Case.astro';
+import Iterate from '@fullsnacklab/astro-flow/Iterate.astro';
+import AstroWhen from '@fullsnacklab/astro-flow/AstroWhen.astro';
+import AstroSwitch from '@fullsnacklab/astro-flow/AstroSwitch.astro';
+import AstroCase from '@fullsnacklab/astro-flow/AstroCase.astro';
+import AstroIterate from '@fullsnacklab/astro-flow/AstroIterate.astro';
+import {
+  When as WhenFactory,
+  Switch as SwitchFactory,
+  Case as CaseFactory,
+  Iterate as IterateFactory,
+} from '@fullsnacklab/astro-flow';
+
+async function* asyncItems(): AsyncGenerator<string, void, undefined> {
+  yield 'async-a';
+  yield 'async-b';
+}
+---
+<html lang="en">
+  <head><title>M3 packaged flow smoke check</title></head>
+  <body>
+    <When ready={true}><p id="when">when-ok</p></When>
+    <AstroWhen ready={false}>
+      unexpected-alias-when
+      <Fragment slot="else"><p id="alias-when">alias-when-ok</p></Fragment>
+    </AstroWhen>
+    <Switch of="match">
+      <Case of="match"><p id="switch-case">switch-case-ok</p></Case>
+      <Case default>unexpected-default</Case>
+    </Switch>
+    <AstroSwitch of="match">
+      <AstroCase of="match"><p id="alias-switch-case">alias-switch-case-ok</p></AstroCase>
+      <AstroCase default>unexpected-alias-default</AstroCase>
+    </AstroSwitch>
+    <div id="iterate"><Iterate of={['iterate-ok']}>{(item: string) => item}</Iterate></div>
+    <div id="alias-iterate"><AstroIterate of={['alias-iterate-ok']}>{(item: string) => item}</AstroIterate></div>
+    <WhenFactory ready={true}><strong>factory-when-ok</strong></WhenFactory>
+    <SwitchFactory of="match">
+      <CaseFactory of="match"><em>factory-switch-case-ok</em></CaseFactory>
+      <CaseFactory default>unexpected-factory-default</CaseFactory>
+    </SwitchFactory>
+    <div id="factory-iterate"><IterateFactory of={['factory-iterate-ok']}>{(item: string) => item}</IterateFactory></div>
+    <Iterate of={['<script>unsafe</script>']}>
+      {(item: string, index: number | string) => <span data-index={index}>{item}</span>}
+    </Iterate>
+    <AstroIterate of={{ label: 'record-value' }}>
+      {(item: string, key: number | string) => <i data-key={key}>{item}</i>}
+    </AstroIterate>
+    <IterateFactory of={asyncItems()}>
+      {async (item: string, index: number | string) => `${index}:${await Promise.resolve(item)};`}
+    </IterateFactory>
+    <Iterate of={[]}>{() => 'unexpected-empty'}</Iterate>
+    <AstroIterate />
+  </body>
+</html>

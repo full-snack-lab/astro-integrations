@@ -1,7 +1,7 @@
 import { writeFile } from "node:fs/promises";
 import type { AstroIntegration } from "astro";
 import { INTEGRATION_NAME } from "./constants.js";
-import { createEntrypointSources } from "./entrypoint-codegen.js";
+import { createEntrypointSources, createGuardMiddlewareSource } from "./entrypoint-codegen.js";
 import {
   resolveAuthModuleSpecifier,
   resolveBetterAuthOptions,
@@ -66,6 +66,19 @@ export function betterAuth(options: BetterAuthIntegrationOptions): AstroIntegrat
           addMiddleware({
             entrypoint: middlewareEntrypoint,
             order: resolvedOptions.middleware.order,
+          });
+        }
+
+        if (resolvedOptions.guard) {
+          const guardEntrypoint = new URL("guard-middleware.mjs", codegenDirectory);
+          await writeFile(
+            guardEntrypoint,
+            createGuardMiddlewareSource(resolvedOptions.guard, authModule),
+            "utf8",
+          );
+          addMiddleware({
+            entrypoint: guardEntrypoint,
+            order: "pre",
           });
         }
       },

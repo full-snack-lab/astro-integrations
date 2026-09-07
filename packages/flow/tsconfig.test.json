@@ -1,0 +1,12 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "declaration": false,
+    "declarationMap": false,
+    "isolatedDeclarations": false,
+    "sourceMap": false,
+    "types": ["bun", "node"]
+  },
+  "include": ["src/**/*", "test/**/*.ts"],
+  "exclude": ["src/components/**/*.astro"]
+}

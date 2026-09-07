@@ -4,11 +4,41 @@ import { defineWorkspace } from "bunup";
 
 export default defineWorkspace([
   {
+    name: "astro-integration",
+    root: "packages/integration",
+    config: {
+      dts: true,
+      entry: ["src/index.ts", "src/testing.ts"],
+      format: ["esm"],
+      sourcemap: "linked",
+      target: "node",
+    },
+  },
+  {
+    name: "astro-flow",
+    root: "packages/flow",
+    config: {
+      dts: true,
+      entry: ["src/index.ts"],
+      format: ["esm"],
+      sourcemap: "linked",
+      target: "node",
+    },
+  },
+  {
     name: "astro-better-auth",
     root: "packages/better-auth",
     config: {
       dts: true,
-      entry: "src/index.ts",
+      entry: [
+        "src/index.ts",
+        "src/guard.ts",
+        "src/policy.ts",
+        "src/sqlite.ts",
+        "src/node.ts",
+        "src/d1.ts",
+        "src/cloudflare.ts",
+      ],
       format: ["esm"],
       sourcemap: "linked",
       target: "node",
@@ -19,7 +49,7 @@ export default defineWorkspace([
     root: "packages/security",
     config: {
       dts: true,
-      entry: "src/index.ts",
+      entry: ["src/index.ts", "src/cache.ts"],
       format: ["esm"],
       sourcemap: "linked",
       target: "node",

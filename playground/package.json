@@ -20,6 +20,8 @@
     "@fullsnacklab/astro-better-auth": "../packages/better-auth",
     "@fullsnacklab/astro-cloudflare": "../packages/cloudflare",
     "@fullsnacklab/astro-emdash": "../packages/emdash",
+    "@fullsnacklab/astro-flow": "../packages/flow",
+    "@fullsnacklab/astro-integration": "../packages/integration",
     "@fullsnacklab/astro-security": "../packages/security",
     "@fullsnacklab/astro-theme": "../packages/theme",
     "astro": "^7.2.9",
