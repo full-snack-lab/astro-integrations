@@ -19,7 +19,9 @@ The two new packages start at `0.0.0` solely so their minor Changesets produce t
 
 Use Bun 1.4.0, matching the release workflow. Add a changeset for a consumer-visible change with `bun run changeset`. Inspect the pending release set with `bun run changeset status`.
 
-`bun run version-packages` applies Changesets and refreshes `bun.lock` with `--lockfile-only --ignore-scripts`. This is version/lockfile preparation, not validation. Commit the resulting package versions, changelogs, and lockfile together. Do not hand-edit resolved lockfile entries or reuse sibling-checkout `node_modules` links to make consumers resolve unpublished exports.
+`bun run version-packages` applies Changesets, then uses `bun update --lockfile-only --ignore-scripts` with the explicit seven local package names to refresh workspace versions. Bun 1.4.0's plain `bun install --lockfile-only` can retain stale workspace versions after a version-only change ([upstream issue](https://github.com/oven-sh/bun/issues/18906)); a wildcard package argument was also rejected in the recovery environment. The private root lists these packages as `workspace:*` development dependencies so the targeted update operates on existing local dependencies rather than adding packages or upgrading external registry dependencies. Add future shared packages to both this tooling dependency list and the version command; do not substitute registry-resolved dependencies or a blanket `bun update`.
+
+This is version/lockfile preparation, not validation. Commit the resulting package versions, changelogs, and lockfile together. Do not hand-edit resolved lockfile entries or reuse sibling-checkout `node_modules` links to make consumers resolve unpublished exports. Ordinary intra-monorepo workspace links are separate from the historical cross-repository sandbox links.
 
 ## Verification gate
 

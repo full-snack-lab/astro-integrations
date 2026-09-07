@@ -1,6 +1,6 @@
 {
   "name": "@fullsnacklab/astro-flow",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "Declarative control flow components and async iteration primitives for Astro.",
   "keywords": [
     "astro",

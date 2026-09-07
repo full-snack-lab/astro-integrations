@@ -1,6 +1,6 @@
 {
   "name": "@fullsnacklab/astro-security",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Secure Astro CSP, dynamic response headers, and optional static asset headers.",
   "keywords": [
     "astro",

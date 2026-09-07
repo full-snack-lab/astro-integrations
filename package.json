@@ -26,11 +26,18 @@
     "test:coverage": "bun test --coverage",
     "test:watch": "bun test --watch",
     "type-check": "bun run --filter '*' type-check",
-    "version-packages": "changeset version && bun install --lockfile-only --ignore-scripts"
+    "version-packages": "changeset version && bun update --lockfile-only --ignore-scripts @fullsnacklab/astro-better-auth @fullsnacklab/astro-cloudflare @fullsnacklab/astro-emdash @fullsnacklab/astro-flow @fullsnacklab/astro-integration @fullsnacklab/astro-security @fullsnacklab/astro-theme"
   },
   "devDependencies": {
     "@changesets/cli": "^3.0.1",
     "@emdash-cms/cloudflare": "^0.35.0",
+    "@fullsnacklab/astro-better-auth": "workspace:*",
+    "@fullsnacklab/astro-cloudflare": "workspace:*",
+    "@fullsnacklab/astro-emdash": "workspace:*",
+    "@fullsnacklab/astro-flow": "workspace:*",
+    "@fullsnacklab/astro-integration": "workspace:*",
+    "@fullsnacklab/astro-security": "workspace:*",
+    "@fullsnacklab/astro-theme": "workspace:*",
     "@types/bun": "^1.4.0",
     "bunup": "^0.16.32",
     "emdash": "^0.35.0",

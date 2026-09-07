@@ -3,10 +3,17 @@
   "configVersion": 1,
   "workspaces": {
     "": {
-      "name": "astro-integrations-monorepo",
+      "name": "astro-integrations",
       "devDependencies": {
         "@changesets/cli": "^3.0.1",
         "@emdash-cms/cloudflare": "^0.35.0",
+        "@fullsnacklab/astro-better-auth": "workspace:*",
+        "@fullsnacklab/astro-cloudflare": "workspace:*",
+        "@fullsnacklab/astro-emdash": "workspace:*",
+        "@fullsnacklab/astro-flow": "workspace:*",
+        "@fullsnacklab/astro-integration": "workspace:*",
+        "@fullsnacklab/astro-security": "workspace:*",
+        "@fullsnacklab/astro-theme": "workspace:*",
         "@types/bun": "^1.4.0",
         "bunup": "^0.16.32",
         "emdash": "^0.35.0",
@@ -18,7 +25,7 @@
     },
     "packages/better-auth": {
       "name": "@fullsnacklab/astro-better-auth",
-      "version": "0.1.0",
+      "version": "0.2.0",
       "peerDependencies": {
         "astro": "^7.2.9",
         "better-auth": "^1.7.2",
@@ -45,21 +52,21 @@
     },
     "packages/flow": {
       "name": "@fullsnacklab/astro-flow",
-      "version": "0.0.0",
+      "version": "0.1.0",
       "peerDependencies": {
         "astro": "^7.2.9",
       },
     },
     "packages/integration": {
       "name": "@fullsnacklab/astro-integration",
-      "version": "0.0.0",
+      "version": "0.1.0",
       "peerDependencies": {
         "astro": "^7.2.9",
       },
     },
     "packages/security": {
       "name": "@fullsnacklab/astro-security",
-      "version": "0.1.0",
+      "version": "0.2.0",
       "peerDependencies": {
         "astro": "^7.2.9",
       },

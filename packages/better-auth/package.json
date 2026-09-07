@@ -1,6 +1,6 @@
 {
   "name": "@fullsnacklab/astro-better-auth",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Astro integration for Better Auth with automatic route and optional session middleware setup.",
   "keywords": [
     "astro",
