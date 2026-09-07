@@ -1,3 +1,5 @@
+import { HTMLString as AstroHTMLString } from "astro/runtime/server/escape.js";
+
 export type MaybePromise<Value> = Value | PromiseLike<Value>;
 
 export type IterationResult<Value> =
@@ -105,9 +107,11 @@ export async function* iterate<Value, Result>(
 }
 
 /**
- * String wrapper tagged as trusted HTML for framework-owned rendering adapters.
+ * Astro-recognized trusted HTML with the legacy flow string tag.
+ *
+ * @remarks Only wrap framework-rendered or otherwise trusted HTML, never raw user input.
  */
-export class HTMLString extends String {
+export class HTMLString extends AstroHTMLString {
   get [Symbol.toStringTag](): string {
     return "HTMLString";
   }

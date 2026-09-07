@@ -35,6 +35,12 @@ import { Iterate, Switch, Case, When } from "@fullsnacklab/astro-flow";
 </Iterate>
 ```
 
+Function children receive `(value, index)` for iterables and `(value, key)` for records. Async sources and async function children render sequentially. Missing sources or default slots render nothing.
+
+The factories bind raw Astro slots through their render context. They must not be invoked with mock objects that pretend raw slots already have `Astro.slots.render()` or `has()`. Source component wrappers share `renderIteration(source, Astro.slots)`, which uses the documented slot argument API rather than inspecting compiler expressions.
+
+Astro owns escaping and child rendering. Already-marked slot strings retain their rendering instructions. The exported `HTMLString` preserves its legacy string tag and Astro's native trusted-HTML marker; only construct it from trusted HTML, never raw user input.
+
 ### Async Iteration Utilities
 
 ```ts

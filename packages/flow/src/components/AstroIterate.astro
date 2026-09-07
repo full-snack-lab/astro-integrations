@@ -1,5 +1,5 @@
 ---
-import { Iterate as IterateFactory } from '@fullsnacklab/astro-flow';
+import { renderIteration } from '@fullsnacklab/astro-flow';
 const { of } = Astro.props;
 ---
-<IterateFactory of={of}><slot /></IterateFactory>
+{renderIteration(of, Astro.slots)}
